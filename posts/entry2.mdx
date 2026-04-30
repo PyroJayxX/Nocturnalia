@@ -1,0 +1,43 @@
+---
+title: created an openclaw ai agent to sort my downloads folder
+date: 2026-05-01
+time: 01:50 AM
+tags:
+  - interesting
+  - spontaneous
+  - project
+---
+
+i couldn't sleep and i ran out of shows to watch, so i created an ai agent to sort my downloads folder.
+
+i'm probably like a year late to this ai agents trend, but i've always wanted to try it, so here i am.
+
+i was thinking about what i could make it do; fetch job postings for me, manage my calendar, and stuff like that.
+
+but since i'm just getting started, i decided to go with something simpler: making it sort my downloads folder.
+
+my downloads folder is always a mess. a pile of unsorted files tossed into oblivion, and a lot of wasted space.
+
+so i wanna build this agent to solve that problem.
+
+i'm feeling kinda lazy to watch beginner guides for this, so i'm just gonna make claude spoonfeed me the glorious details and deal with the problems later.
+
+apparently the first step was deciding which platform i wanted to give instructions to the agent through. i chose discord for convenience.
+
+apparently that's more complicated than choosing telegram. i needed to create a bot, and i had never made one before. so now i did.
+
+i named the bot File Haven since it's gonna be sorting files. then i added it to my discord server. apparently i can give it a picture too, but i'm not gonna do that just yet.
+
+<img src="/photos/e2p1.jpg" alt="File Haven demo image" width="600" />
+
+seeing that disclaimer about security and stuff made me feel things tho. cool in the way something powerful is also a little dangerous.
+
+then came the part where i had to choose which api to use. anthropic's claude was there, but paid. groq was another option, which people deemed generous. then there was google gemini, which i already had a free tier with.
+
+i chose to run it locally with ollama instead since i had the resources anyway, and sorting files didn't seem like a task demanding anything crazy so i chose the smaller 8 billion parameter model (llama3.1 8B).
+
+i was gonna keep going, but i found a bug in the latest npm build of openclaw where it couldn't find the discord plugin.
+
+and it was already 3 am.
+
+so this project continues another night.

@@ -1,6 +1,7 @@
 ---
 title: created an openclaw ai agent to sort my downloads folder
 date: 2026-05-01
+lastUpdated: 2026-05-02
 time: 01:50 AM
 tags:
   - interesting
@@ -24,7 +25,7 @@ i'm feeling kinda lazy to watch beginner guides for this, so i'm just gonna make
 
 apparently the first step was deciding which platform i wanted to give instructions to the agent through. i chose discord for convenience.
 
-apparently that's more complicated than choosing telegram. i needed to create a bot, and i had never made one before. so now i did.
+unfortunately that's more complicated than just choosing telegram. i needed to create a bot, and i had never made one before. so now i did.
 
 i named the bot File Haven since it's gonna be sorting files. then i added it to my discord server. apparently i can give it a picture too, but i'm not gonna do that just yet.
 
@@ -41,3 +42,47 @@ i was gonna keep going, but i found a bug in the latest npm build of openclaw wh
 and it was already 3 am.
 
 so this project continues another night.
+
+---
+
+*continuation; the next next night, roughly 2 am*
+
+so i came back. different night, same chaos.
+
+the discord plugin bug ended up being a version mismatch between openclaw and the plugin it downloaded; the plugin was on `2026.3.13` but openclaw itself was `2026.4.27`. spent a solid chunk of time debugging that. the fix was rolling back openclaw to `2026.4.23`, the last stable version, using pnpm instead of npm. classic open source stuff.
+
+with discord finally connecting, i ran into the next problem: memory.
+
+llama3.1 8B kept getting stuck in processing; sessions timing out at 140+ seconds. my laptop only has 16GB of RAM and windows 11 was already eating a good chunk of it with its usual load of bloatware before i even started. the 8B model just pushed it over the edge.
+
+so i switched to **qwen3:4b**; lighter, newer, and supposedly smarter per parameter. half the size, fits comfortably, and according to benchmarks it actually beats the some 8B models on simple tasks anyway.
+
+that came with its own problems though.
+
+qwen3 has a "thinking mode" baked in by default, where it does a long chain-of-thought before answering. on a 4B model with openclaw's heavy context, this turned every "hello" into a three-minute silence followed by a wall of internal monologue dumped directly into discord. like, the model literally showed me its thoughts. every. single. one.
+
+i tried disabling it with `/no_think`, custom modelfiles, lowering the context window. some things helped, some didn't.
+
+after all that, i found out there was a **qwen3:4b-instruct** variant the whole time; the instruct version has thinking mode stripped out entirely. switched to that. would've been nice to know earlier.
+
+however the bigger issue was that 4B models are just not reliable for agentic tool use. the model would announce "i will now write this file" and then simply... not do it. confident, articulate, completely hollow. apparently this is a known thing; community benchmarks say models under 8B frequently hallucinate tool calls in openclaw. they're fine for chat. not fine for actually moving files around.
+
+so i'm currently at an in-between state. the agent runs. it talks back. it just sometimes lies about what it's done.
+
+---
+
+somewhere in the middle of all the debugging, i also gave the agent a name.
+
+**Archie**.
+
+short for archive, which felt right for something whose whole job is organizing files. i gave it a soul file too; literally a `SOUL.md` in its workspace. it describes its personality: serious, concise, but empathetic. no performative helpfulness. no "great question!" just get it done.
+
+it had an existential crisis at one point. it read its own soul file and started quoting it back at me mid-task: *"this is a serious breach of my core duty."* i had to rewrite the soul file to be less dramatic.
+
+---
+
+and then it actually sorted my downloads folder.
+
+not perfectly; it still hallucinated a tool call or two along the way. but the plan was solid, i approved it, and it moved the files. resumes in documents/personal, installers in downloads/installers, images in pictures. the folder that had been a pile of chaos for months was suddenly organized.
+
+not bad for two sleepless nights.

@@ -7,6 +7,7 @@ const postsDirectory = path.join(process.cwd(), 'posts');
 export type PostFrontmatter = {
   title: string;
   date: string;
+  lastUpdated: string;
   time: string;
   tags: string[];
 };

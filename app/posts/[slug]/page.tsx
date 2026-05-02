@@ -87,6 +87,7 @@ export default async function PostPage({
           </h1>
           <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-400">
             <span>{formatDate(post.date)}</span>
+            <span>Last updated: {formatDate(post.lastUpdated)}</span>
             <span>{post.time}</span>
             <span>{post.tags.join(' · ')}</span>
           </div>

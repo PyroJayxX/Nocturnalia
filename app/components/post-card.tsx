@@ -20,8 +20,8 @@ export function PostCard({ post }: { post: PostListItem }) {
           <h3 className="text-md font-light text-white transition group-hover:text-nocturnal-primary md:text-xl lg:text-2xl">
             {post.title}
           </h3>
-          <p className="mt-2 text-sm uppercase tracking-[0.24em] text-slate-400">
-            {formatDate(post.date)}
+          <p className="mt-2 text-xs uppercase tracking-[0.2em] text-slate-400">
+            Last Updated: {formatDate(post.lastUpdated)}
           </p>
         </div>
 
